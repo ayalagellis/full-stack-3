@@ -1,15 +1,16 @@
 const user={
-
+    type:"user",
     username:'',
     password:'',
     userTasks:[]
 }
 
 const task = {
-        taskId = _id, //title
-        text = _text,
-        isDone = _isDone,
-        date = _date
+       type:"task",
+        taskId: "", //title
+        text:"",
+        isDone:"",
+        date:""
     }
 
  
