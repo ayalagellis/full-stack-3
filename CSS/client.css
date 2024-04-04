@@ -1,0 +1,267 @@
+.active_page{
+    display: block;
+}
+
+.page{
+   display: none;
+    width: 100%;
+    min-height: 100%; /* allow for content off the bottom of the page */
+    position: fixed;  /* or absolute if the user needs to scroll for more content */
+    padding: 1rem 2rem;
+}
+
+/* style home page*/
+body{
+    background-color: rgb(247, 241, 230);
+}
+#home_div{
+    background-color: rgb(247, 241, 230);
+}
+
+#site_title{
+    font-family: 'Tangerine'; 
+    margin: auto;
+    font-size: 100px;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    margin-top: 5px;
+    font-weight: bold;
+    color: rgb(92,86,75);
+}
+.navbar { 
+    overflow: hidden; 
+    background-color: whitesmoke; 
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 85%;
+    /* margin: 10px;  */
+    border-radius: 25px; 
+    
+  } 
+   
+  /* Links inside the navbar */ 
+  .navbar a { 
+    float: left; 
+    font-size: 40px; 
+    font-weight: bold;
+    color: rgb(92,86,75); 
+    text-align: center; 
+    padding: auto; 
+    text-decoration: none; 
+    font-family: 'Tangerine', sans-serif;
+  } 
+   
+  .navbarul { 
+    list-style-type: none; 
+    margin: 15; 
+    padding: 0; 
+    overflow: hidden; 
+  } 
+   
+  .navbarul li { 
+    float: left; 
+    padding-left: 10px; 
+    padding-right: 10px; 
+  } 
+   
+  .navbarul li a { 
+    display: block; 
+    text-align: center; 
+    padding-right:  16px; 
+    padding-left: 16px; 
+    text-decoration: none; 
+  } 
+
+  .slowFade {
+    display: flex;
+    align-items: flex-start;
+    /* background: #fff; */
+    height: 90vh;
+   
+    position: relative;
+  }
+  .slowFade .slide img {
+    position: absolute;
+    min-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    height: auto;
+    background: #000;
+    opacity: 0;
+    animation: slowFade 24s infinite;
+    justify-content: center;
+  }
+  .slowFade .slide:nth-child(2) img {
+            animation-delay: 8s;
+  }
+  .slowFade .slide:nth-child(3) img {
+    
+            animation-delay: 16s;
+  }
+  /* .slowFade .slide:nth-child(4) img {
+    animation-delay: 24s;
+        
+  }
+  .slowFade .slide:nth-child(5) img {
+    animation-delay: 32s;
+        
+  }
+  
+  .slowFade .slide:nth-child(6) img {
+    animation-delay: 40s;
+        
+  } */
+  @keyframes slowFade {
+    25% {
+        opacity: 1;
+        
+    }
+    40% {
+        opacity: 0;
+    }
+  }
+
+  /* style sign in page*/
+  .sign_in{
+    height: 100vh;
+    width: 100%;
+    background: url("./images/wedding.jpg") no-repeat center center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-family: 'Tangerine';
+    font-size: 50px;
+  }
+
+  .title_label{
+    font-weight: bold;
+  }
+  .button{
+    /* border-radius: 50%;
+    font-size: 20px;
+    text-align: center; */
+    background-color: transparent;
+    border-radius: 25%;
+    color:black;
+    /* padding: 15px 32px; */
+    align-items: center;
+    justify-content:center;
+    font-size: 40px;
+    font-family: 'Tangerine';
+    
+  }
+  .menu_sign_in{
+    text-align: left;
+    font-size: 10px;
+   
+  }
+
+  /* style sign up page*/
+  
+  .sign_up{
+    height: 100vh;
+    width: 100%;
+    background: url("./images/sign_up.jpg") no-repeat center center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-family: 'Tangerine';
+    font-size: 40px;
+  }
+
+  /* style contact us*/
+  .contact{
+    height: 100vh;
+    width: 100%;
+    background: url("./images/contact.jpg") no-repeat center center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-family: 'Tangerine';
+    font-size: 50px;
+  }
+
+  
+ 
+  
+  #log_out_icone{
+    width: 25px;
+    height: 25px;
+    margin-top: 5px;
+    display: inline-block;
+  
+  }
+   
+  #hello_user{
+    display: inline;
+    
+    }
+  #close_span{
+    float: right;
+    margin-right: 10px;
+    margin-top: 10px;
+    width: 25px;
+    height: 25px;
+  }
+
+
+
+  .appear{
+    display: block;
+  }
+  .remove{
+    display: none;
+  }
+  #guest_event_list{
+    width: 60%;
+    float: left;
+    display: inline-block;
+  }
+  #username_div{
+    float: right;
+    margin-right: 20px;
+    display:inline-block;
+    font-weight: bold;
+  
+  }
+
+  /* Style the list items */
+
+
+
+  .close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 12px 16px 12px 16px;
+  }
+
+
+
+
+/*About us*/
+.text_about{
+  font-family: 'Tangerine'; 
+    margin: auto;
+    font-size: 50px;
+    text-align: center;
+    align-content: center;
+}
+#about_us_title{
+  font-family: 'Tangerine'; 
+  font-size: 100px;
+  text-align: center;
+}
+  
