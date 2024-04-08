@@ -1,26 +1,28 @@
-const user={
+class DB_API{
+ user={
     type:"user",
     username:'',
     password:'',
     userTasks:[]
 }
 
-const task = {
+ task = {
        type:"task",
         taskId: "", //title
         text:"",
-        isDone:"",
+        isDone: '',
         date:""
     }
 
  
-var current_user=null;
+ current_user=null;
 
 
-function addUser(user) {
+
+ static addUser(user) {
     // Retrieve existing user data from local storage or initialize an empty array
     const users = JSON.parse(localStorage.getItem('users')) || []; //array of users
-    if(users.find(u => u.username === username) === false)
+    if(!users.find(u => u.username === user.username))
     {
     // Add the new user object to the array
     users.push(user);
@@ -32,21 +34,21 @@ function addUser(user) {
     }
 
 
-    user_current=JSON.parse(localStorage.getItem("current_user")); //who is currently connected
-    current_user = user; //the new added user is now the current_user
-    if(user_current!=null){ //checks if there was a previously stored current user
+    //user_current=JSON.parse(localStorage.getItem("current_user")); //who is currently connected
+    //current_user = user; //the new added user is now the current_user
+    /*if(user_current!=null){ //checks if there was a previously stored current user
         localStorage.removeItem("current_user");
         localStorage.setItem("current_user", JSON.stringify(current_user))
     }
     else{
         localStorage.setItem("current_user", JSON.stringify(current_user));
-    }
+    }*/
     
-
+    localStorage.setItem("current_user", JSON.stringify(user))
 }
 
 // Function to retrieve a user object from local storage by username
-function getUser(username) {
+static getUser(username) {
     // Retrieve user data from local storage
     const users = JSON.parse(localStorage.getItem('users')) || [];
 
@@ -58,7 +60,7 @@ function getUser(username) {
 }
 
 
-function userLogout(){
+static userLogout(){
 
     localStorage.setItem("current_user","");
     var currentUser = localStorage.getItem("current_user");
@@ -72,21 +74,21 @@ function userLogout(){
 }
 
 
-function addTaskToUser(task){
+ static addTaskToUser(task){
     //var user = getUser(current_user.username)
     var currentUser = JSON.parse(localStorage.getItem("current_user"));
 
-    if(user === null){
+    if(currentUser === null){
         return false; // user not found;
     }
     else{
         currentUser.userTasks.push(task);
-        saveUser(currentUser); //saves updated user in local storage
+        DB_API.saveUser(currentUser); //saves updated user in local storage
         return true;
     }
 }
 
-function saveUser(currentUser){
+static saveUser(currentUser){
     localStorage.setItem("current_user", JSON.stringify(currentUser)); //updates current user
     const allUsers = JSON.parse(localStorage.getItem("users"));
     const userIndex = allUsers.findIndex(user => user.username === currentUser.username);
@@ -95,7 +97,7 @@ function saveUser(currentUser){
 }
 
 
-function removeTask(userTaskID){
+static removeTask(userTaskID){
     var currentUser = JSON.parse(localStorage.getItem("current_user"));
     var indexToDelete = curentUser.userTasks.findIndex(item => item.taskId === userTaskID);
 
@@ -104,12 +106,12 @@ function removeTask(userTaskID){
     }
     else{
         curentUser.userTasks.splice(indexToDelete, 1);
-        saveUser(currentUser); //saves updated user in local storage
+        DB_API.saveUser(currentUser); //saves updated user in local storage
         return true;
     }
 }
 
-function updateTask(task){
+static updateTask(task){
     var currentUser = JSON.parse(localStorage.getItem("current_user"));
     var indexToUpdate = curentUser.userTasks.findIndex(item => item.taskId === task.taskId);
 
@@ -120,12 +122,12 @@ function updateTask(task){
         //curentUser.userTasks.splice(indexToUpdate, 1);
         //currentUser.userTasks.push(task);
         currentUser.userTasks[indexToUpdate] = task;
-        saveUser(currentUser); //saves updated user in local storage
+        DB_API.saveUser(currentUser); //saves updated user in local storage
         return true;
     }
 }
 
-function getTask(taskId){
+static getTask(taskId){
     var currentUser = JSON.parse(localStorage.getItem("current_user"));
         // Check if current user exists
         if (!currentUser || !currentUser.userTasks) {
@@ -138,7 +140,7 @@ function getTask(taskId){
     
 }
 
-function getAllTasks(){
+static getAllTasks(){
     var currentUser = JSON.parse(localStorage.getItem("current_user"));
         // Check if current user exists and userTasks array is present
         if (!currentUser || !currentUser.userTasks) {
@@ -149,7 +151,7 @@ function getAllTasks(){
         return currentUser.userTasks;    
 }
 
-
+}
 
 
 

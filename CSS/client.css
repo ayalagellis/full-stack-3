@@ -142,20 +142,16 @@ body{
   .title_label{
     font-weight: bold;
   }
-  .button{
-    /* border-radius: 50%;
-    font-size: 20px;
-    text-align: center; */
-    background-color: transparent;
-    border-radius: 25%;
-    color:black;
-    /* padding: 15px 32px; */
-    align-items: center;
-    justify-content:center;
+
+  .button {
+    border:#000; 
+    border-radius: 50px; /* Adjust as needed */
+    color: black;
     font-size: 40px;
     font-family: 'Tangerine';
-    
-  }
+    cursor: pointer; /* Add cursor pointer to indicate interactivity */
+}
+
   .menu_sign_in{
     text-align: left;
     font-size: 10px;

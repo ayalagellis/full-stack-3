@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="client.css"/>
+    <link rel="stylesheet" type="text/css" href="/CSS/client.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet'>
@@ -12,88 +12,34 @@
     <title>to- do list</title>
 </head>
 <body >
-    <template class="active_page" id="home"  >
-        <div id="home_div"  >
-        <div >
-            <p id="site_title">to do list</p>
-            <div class="navbar">
-                <nav>
-                    <ul class="navbarul">
-                        <li><a href="#" data-target="home" class="nav-link"> ❃ Home</a></li>
-                        <li><a href="#" data-target="contact" class="nav-link" > ❃ Contact</a></li>
-                        <li><a href="#" data-target="about_us" class="nav-link"> ❃ About Us</a></li>
-                        <li><a href="#" data-target="sign_in" class="nav-link"> ❃ Sign In</a></li>
-                        <li><a href="#" data-target="sign_up" class="nav-link"> ❃ Sign Up</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
 
-    </template> 
-  
+    
+    <h1>To Do List</h1>  
 
-              
-  
-    <template class="page" id="about_us">
-        
-          
-    </template>
-    <template class="page" id="sign_in">
-        <div  id="sign_in_div" class = "sign_in"  >
-         
-            <div class="navbar">
-                <nav>
-                    <ul class="navbarul">
-                        <li><a href="#" data-target="home" class="nav-link">  ❃ Home</a></li>
-                        <li><a href="#" data-target="contact" class="nav-link" >  ❃ Contact</a></li>
-                        <li><a href="#" data-target="about_us" class="nav-link"> ❃ About Us</a></li>
-                        <li><a href="#" data-target="sign_up" class="nav-link"> ❃ Sign Up</a></li>
-                    </ul>
-                </nav>
-            </div>
-
-      
-
+        <div  id="sign_in_div" class = "sign_in"  >        
                   <form name='form-login'>
-                    <div class="sign-in-htm">
     
                         <div class="group">
                             <label for="userEmail" class="label title_label">Email</label>
-                            <input type="email" class="input" id="userMail" placeholder="UserMail" required>
+                            <input class="input" id="userMail" placeholder="UserMail" required>
                         </div>
                         <div class="group">
                             <label for="userPw" class="label title_label">Password</label>
                             <input type="password" class="input" id= "userPw" placeholder="Password" required>
                         </div>
                         <div class="group">
-                            <input id= "login_btn" class="button" type="submit" value="Sign In" onclick="check()">
+                            <button id= "SignIn_btn" class="button" type="submit" onclick="signIn_toDo()">Sign In</button>
+                            <button id= "SignUp_btn" class="button" type="submit" onclick="signIn_signUp()">Sign Up</button>
                         </div>
-    
-                    
-    
-                    </div>
                 </form>
         </div>
-    </template>
+
     <template class="page" id="sign_up"   >
         <div id="sign_up_div" class="sign_up" >
            
-            <div class="navbar">
-                <nav>
-                    <ul class="navbarul">
-                        <li><a href="#" data-target="home" class="nav-link">  ❃ Home</a></li>
-                        <li><a href="#" data-target="contact" class="nav-link" >  ❃ Contact</a></li>
-                        <li><a href="#" data-target="about_us" class="nav-link"> ❃ About Us</a></li>
-                        <li><a href="#" data-target="sign_in" class="nav-link"> ❃ Sign In</a></li>
-               
-                    </ul>
-                </nav>
-            </div>
-            <div>
                 <form name='form-login'>
                     <div class="sign-up-htm">
                         
-    
                         <div class="group">
                             <label for="name" class="label title_label">Name</label>
                             <input type="text" id="name" class="input" placeholder="Username" required>
@@ -119,12 +65,9 @@
                             <li class="special title_label">Must contain a number or special character.</li>
                         </ul>
                         <div class="group">
-                            <input id="rgstr_btn" data-target="guest_list" class="button nav-link" type="submit" value="Sign Up" onclick="store()">
+                            <input id="rgstr_btn" data-target="todo_list" class="button nav-link" type="submit" value="Sign Up" onclick="signUp_toDo()">
                         </div>
-                        <br>
-                        <!-- <div class="hr"></div>
-                        
-                    </div> -->
+                        <br>         
                 </form>
          </div>
     </template>
@@ -133,11 +76,11 @@
           <div class="navbar">
             <nav>
               <ul class="navbarul">
-                <li><a href="#" data-target="home" class="nav-link"> ❃ Home</a></li>
-                <li><a href="#" data-target="contact" class="nav-link" > ❃ Contact</a></li>
-                <li><a href="#" data-target="about_us" class="nav-link"> ❃ About Us</a></li>
-                <li><a href="#" data-target="sign_in" class="nav-link"> ❃ Sign In</a></li>
-                <li><a href="#" data-target="sign_up" class="nav-link"> ❃ Sign Up</a></li>
+                <li><a href="#" data-target="home" class="nav-link">  Home</a></li>
+                <li><a href="#" data-target="contact" class="nav-link" >  Contact</a></li>
+                <li><a href="#" data-target="about_us" class="nav-link">  About Us</a></li>
+                <li><a href="#" data-target="sign_in" class="nav-link">  Sign In</a></li>
+                <li><a href="#" data-target="sign_up" class="nav-link">  Sign Up</a></li>
               </ul>
             </nav>
           </div>
@@ -151,11 +94,11 @@
         </div>
       </template>
       
-    
-    <script  type="text/javascript" src="./client.js"></script> 
-    <script  type="text/javascript" src="./FXMLHttpRequest.js"></script> 
-    <script  type="text/javascript" src="./network.js"></script> 
-    <script  type="text/javascript" src="server.js"></script>
-    <script  type="text/javascript" src="./DB_API.js"></script>  
+      <script  type="text/javascript" src="/JS/Client.js"></script> 
+      <script  type="text/javascript" src="/JS/FXMLHttpRequest.js"></script> 
+      <script  type="text/javascript" src="/JS/network.js"></script> 
+      <script  type="text/javascript" src="/JS/Server.js"></script>
+      <script  type="text/javascript" src="/JS/DB_API.js"></script>       
+       
 </body>
 </html>

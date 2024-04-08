@@ -6,14 +6,14 @@ class Server{
             var data=JSON.parse(body)
             
             if(data.type=="user"){  //adding a user
-                addUser(body)
+                DB_API.addUser(data);
                 obj.status=200;
                 obj.readyState=4;
                 return obj;
                
             }
             if(data.type=="task"){ //adding a task
-                addTaskToUser(body)
+                DB_API.addTaskToUser(data);
                 obj.status=200;
                 obj.readyState=4;
                 return obj;          
@@ -21,9 +21,10 @@ class Server{
             break;
             
             case "GET":
-            if(obj.type=="user"){  //returning a user
+            if(obj.url=="./GET_user"){  //returning a user
                 var user=null;
-                user=getUser(body.username)
+                var data=JSON.parse(body)
+                user=DB_API.getUser(data.username);
                 if(user!=null){
                     obj.status=200;
                     obj.readyState=4;
@@ -44,7 +45,7 @@ class Server{
 
             if(obj.url=="./GET_task"){  //returning a task
                 var task=null;
-                task=getTask(body.taskId);  
+                task=DB_API.getTask(data.taskId);  
                 if(task!=null)
                 {
                     obj.status=200;
@@ -62,9 +63,9 @@ class Server{
   
             }
 
-            if(obj.url=="./GET_user"){ //returning list of tasks of current user
+            if(obj.url=="./GET_user_list"){ //returning list of tasks of current user
                 var list_tasks=null;
-                list_tasks=getAllTasks(body);
+                list_tasks=DB_API.getAllTasks(data);
                 if(list_tasks!=null){
                     obj.status=200;
                     obj.readyState=4;
@@ -83,7 +84,8 @@ class Server{
             }
             
             case "DELETE": //deleting a task
-            removeTask(body.taskId);
+            var data=JSON.parse(body)
+            DB_API.removeTask(data.taskId);
             obj.status=200;
             obj.readyState=4;
             obj.response=null;
@@ -92,7 +94,8 @@ class Server{
             
 
             case "PUT": ///updating a task
-            updateTask(body);
+            var data=JSON.parse(body)
+            DB_API.updateTask(data);
             obj.status=200;
             obj.readyState=4;
             obj.response=null;
