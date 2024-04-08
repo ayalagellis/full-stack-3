@@ -101,9 +101,17 @@ function getTaskList(){
             let x = document.createTextNode(item_value);
             //li.setAttribute('id',task_list[i].mail)
             li.setAttribute('class',"task_list")
-            li.appendChild(x);    
-            document.getElementById("todoList").appendChild(li);
-   
+            li.appendChild(x);
+            let closeButton = document.createElement("span");
+            closeButton.innerHTML = "&times;";
+            closeButton.className = "close-button";                              
+            closeButton.onclick = function() {
+            li.remove();
+            removeTask(task_list[i]);
+            };
+            li.appendChild(closeButton);
+            li.className = "task-list";    
+            document.getElementById("todoList").appendChild(li);  
     }
    }
 }
@@ -134,5 +142,9 @@ function addTask(){
     li.setAttribute('class',"task_list")
     li.appendChild(x);       
     document.getElementById("todoList").appendChild(li);
+
+}
+
+function removeTask(task){
 
 }
