@@ -2,16 +2,7 @@
 let cur_user = null;
 
 function signIn_toDo() {
-    let signInForm = document.getElementById("sign_in_div");
-    signInForm.classList.add("hidden"); // Add 'hidden' class to hide
-
-    let signInTemplate = document.getElementById("sign_in_div");
-    if (signInTemplate) {
-        signInTemplate.parentNode.removeChild(signInTemplate);
-    }
-    let toDoTemplate = document.getElementById("todo_list");
-    let clone = toDoTemplate.content.cloneNode(true);
-    document.body.appendChild(clone);
+    
 
     let emailInput = signInTemplate.querySelector("#userMail").value;
     let userPassword = signInTemplate.querySelector("#userPw").value;
@@ -30,7 +21,21 @@ function signIn_toDo() {
     var rep=fxhttp.onload();
     cur_user=rep;
    if(cur_user){
+    let signInForm = document.getElementById("sign_in_div");
+    signInForm.classList.add("hidden"); // Add 'hidden' class to hide
+
+    let signInTemplate = document.getElementById("sign_in_div");
+    if (signInTemplate) {
+        signInTemplate.parentNode.removeChild(signInTemplate);
+    }
+    
+    let toDoTemplate = document.getElementById("todo_list");
+    let clone = toDoTemplate.content.cloneNode(true);
+    document.body.appendChild(clone);
     getTaskList();
+   }
+   if(!cur_user){
+       alert("User does not exist.")
    }
 
 }
@@ -102,12 +107,43 @@ function getTaskList(){
             //li.setAttribute('id',task_list[i].mail)
             li.setAttribute('class',"task_list")
             li.appendChild(x);
+            let updatetask = task_list[i];
+      
+
+            let inputField = document.createElement("input");
+                inputField.type = "text";
+                //inputField.value = task_list[i].text;
+                inputField.className = "task-input";
+                inputField.addEventListener("keypress", function(event) {
+                    if (event.key === "Enter") {
+                        event.preventDefault();
+                        //task_list[i].text = inputField.value;
+                        var currentDate = new Date();
+                        new_task={
+                            type: "task",
+                            taskId: inputField.value, //title
+                            text:inputField.value,
+                            isDone:"false",
+                            date: currentDate.toISOString()
+                        };
+                        //let obj1String = JSON.stringify(updatetask);
+                        //let obj2String = JSON.stringify(new_task);
+                        let combinedString = [updatetask, new_task];
+                        updateTask(updatetask,new_task);
+                        
+                        li.firstChild.nodeValue = inputField.value + " " + inputField.value;
+                    }
+                });
+                li.appendChild(inputField);
+
+
             let closeButton = document.createElement("span");
             closeButton.innerHTML = "&times;";
-            closeButton.className = "close-button";                              
+            closeButton.className = "close-button";  
+            let removedTask =  task_list[i];                           
             closeButton.onclick = function() {
-            li.remove();
-            removeTask(task_list[i]);
+                li.remove();
+                removeTask(removedTask);
             };
             li.appendChild(closeButton);
             li.className = "task-list";    
@@ -140,11 +176,75 @@ function addTask(){
     let item_value = title+" "+text;
     let x = document.createTextNode(item_value);
     li.setAttribute('class',"task_list")
-    li.appendChild(x);       
+    li.appendChild(x);
+    
+    let inputField = document.createElement("input");
+                inputField.type = "text";
+                inputField.className = "task-input";
+                inputField.addEventListener("keypress", function(event) {
+                    if (event.key === "Enter") {
+                        event.preventDefault();
+                        var currentDate = new Date();
+                        new_task={
+                            type: "task",
+                            taskId: inputField.value, //title
+                            text:inputField.value,
+                            isDone:"false",
+                            date: currentDate.toISOString()
+                        };
+                        updateTask(updatetask,new_task);
+                        
+                        li.firstChild.nodeValue = inputField.value + " " + inputField.value;
+                    }
+                });
+                li.appendChild(inputField);
+    let closeButton = document.createElement("span");
+            closeButton.innerHTML = "&times;";
+            closeButton.className = "close-button";  
+            closeButton.onclick = function() {
+                li.remove();
+                removeTask(new_task);
+            };
+            li.appendChild(closeButton);
+            li.className = "task-list";     
     document.getElementById("todoList").appendChild(li);
 
 }
 
 function removeTask(task){
+    var fxhttp=new FXMLHttpRequest();
+    fxhttp.open("DELETE","./remove_task",true);
+    var list_to_search_json=JSON.stringify(task); 
+    fxhttp.send(list_to_search_json);
+}
+
+function updateTask(updatetask, new_task){
+    //var fxhttp=new FXMLHttpRequest();
+    //fxhttp.open("PUT","./update_task",true);
+    //var list_to_search_json=JSON.stringify(task); 
+    //fxhttp.send(list_to_search_json);
+    removeTask(updatetask);
+    var fxhttp=new FXMLHttpRequest();
+    fxhttp.open("POST","./add_task",true);
+    var list_to_search_json=JSON.stringify(new_task); 
+    fxhttp.send(list_to_search_json);
+
+    let li = document.createElement("li");
+    let item_value = new_task.title+" "+new_task.text;
+    let x = document.createTextNode(item_value);
+    li.setAttribute('class',"task_list")
+    li.appendChild(x);  
+    let closeButton = document.createElement("span");
+            closeButton.innerHTML = "&times;";
+            closeButton.className = "close-button";  
+            closeButton.onclick = function() {
+                li.remove();
+                removeTask(new_task);
+            };
+            li.appendChild(closeButton);
+            li.className = "task-list";     
+    document.getElementById("todoList").appendChild(li);
 
 }
+
+

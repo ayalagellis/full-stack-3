@@ -99,13 +99,13 @@ static saveUser(currentUser){
 
 static removeTask(userTaskID){
     var currentUser = JSON.parse(localStorage.getItem("current_user"));
-    var indexToDelete = curentUser.userTasks.findIndex(item => item.taskId === userTaskID);
+    var indexToDelete = currentUser.userTasks.findIndex(item => item.taskId === userTaskID);
 
-    if(indexToDelete > -1){
-        return false; // user not found;
+    if(indexToDelete <= -1){
+        return false; // task not found;
     }
     else{
-        curentUser.userTasks.splice(indexToDelete, 1);
+        currentUser.userTasks.splice(indexToDelete, 1);
         DB_API.saveUser(currentUser); //saves updated user in local storage
         return true;
     }
@@ -113,15 +113,18 @@ static removeTask(userTaskID){
 
 static updateTask(task){
     var currentUser = JSON.parse(localStorage.getItem("current_user"));
-    var indexToUpdate = curentUser.userTasks.findIndex(item => item.taskId === task.taskId);
+    let old_task = task[0];
+    let new_task = task[1];
 
-    if(indexToUpdate > -1){
+    var indexToUpdate = currentUser.userTasks.findIndex(item => item.taskId === old_task.taskId);
+
+    if(indexToUpdate <= -1){
         return false; // task not found;
     }
     else{
         //curentUser.userTasks.splice(indexToUpdate, 1);
         //currentUser.userTasks.push(task);
-        currentUser.userTasks[indexToUpdate] = task;
+        currentUser.userTasks[indexToUpdate] = new_task;
         DB_API.saveUser(currentUser); //saves updated user in local storage
         return true;
     }

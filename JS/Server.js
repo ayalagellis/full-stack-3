@@ -94,8 +94,8 @@ class Server{
             
 
             case "PUT": ///updating a task
-            var data=JSON.parse(body)
-            DB_API.updateTask(data);
+            //var data=JSON.parse(body);
+            DB_API.updateTask(body);
             obj.status=200;
             obj.readyState=4;
             obj.response=null;
