@@ -13,9 +13,10 @@ class Server{
             }
             
             if(data.type=="user"){  //adding a user
-                DB_API.addUser(data);
+                let exists = DB_API.addUser(data);
                 obj.status=200;
                 obj.readyState=4;
+                obj.response=exists;
                 return obj;
                
             }

@@ -62,7 +62,14 @@ function signIn_toDo() {
     var fxhttp=new FXMLHttpRequest();
     fxhttp.open("POST","./Add_new_user",false);  
     fxhttp.send(new_user_json);
-    alert('Your account has been created');
+    let rep=fxhttp.onload();
+    if(rep){
+        alert('Your account has been created');
+    }
+    else{
+        alert('Your account elready exists');
+        return;
+    }
 
     if (signUpForm) {
         signUpForm.parentNode.removeChild(signUpForm);

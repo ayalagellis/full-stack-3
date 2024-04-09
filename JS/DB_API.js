@@ -29,9 +29,11 @@ class DB_API{
     // Store the updated user data back to local storage
     localStorage.setItem('users', JSON.stringify(users));
     localStorage.setItem("current_user", JSON.stringify(user))
+    return true;
     }
     else{
         console.log("user already exist");
+        return false;
     }
 
 
