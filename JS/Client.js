@@ -1,8 +1,15 @@
 
 let cur_user = null;
 
+document.addEventListener("DOMContentLoaded", function () {
+    let signInTemplate = document.getElementById("sign_in_template");
+    let clone = signInTemplate.content.cloneNode(true);
+    document.body.appendChild(clone);
+});
+
 function signIn_toDo() {
     
+    let signInTemplate = document.getElementById("sign_in_div");
 
     let emailInput = signInTemplate.querySelector("#userMail").value;
     let userPassword = signInTemplate.querySelector("#userPw").value;
@@ -16,15 +23,11 @@ function signIn_toDo() {
 
     var existing_user_json=JSON.stringify(existing_user);
     var fxhttp=new FXMLHttpRequest();
-    fxhttp.open("GET","./GET_user",true);  
+    fxhttp.open("GET","./GET_user",false);  
     fxhttp.send(existing_user_json);
     var rep=fxhttp.onload();
     cur_user=rep;
    if(cur_user){
-    let signInForm = document.getElementById("sign_in_div");
-    signInForm.classList.add("hidden"); // Add 'hidden' class to hide
-
-    let signInTemplate = document.getElementById("sign_in_div");
     if (signInTemplate) {
         signInTemplate.parentNode.removeChild(signInTemplate);
     }
@@ -42,12 +45,6 @@ function signIn_toDo() {
 
 function signUp_toDo() {
     let signUpForm = document.getElementById("sign_up_div");
-    signUpForm.classList.add("hidden"); // Add 'hidden' class to hide
-
-    let signUpTemplate = document.getElementById("sign_up"); //removing previous template
-    if (signUpTemplate) {
-        signUpTemplate.parentNode.removeChild(signUpTemplate);
-    }
 
     let emailInput = signUpForm.querySelector("#email").value;
     let userPassword = signUpForm.querySelector("#pw").value;
@@ -60,21 +57,21 @@ function signUp_toDo() {
 
     var new_user_json=JSON.stringify(new_user);
     var fxhttp=new FXMLHttpRequest();
-    fxhttp.open("POST","./Add_new_user",true);  
+    fxhttp.open("POST","./Add_new_user",false);  
     fxhttp.send(new_user_json);
-    //alert('Your account has been created');
-    //var rep=fxhttp.onload();
-    //cur_user=rep;
-    //let toDoTemplate = document.getElementById("todo_list"); //adding new template
-    //let clone = toDoTemplate.content.cloneNode(true);
-    //document.body.appendChild(clone);
-    //getTaskList();
+    alert('Your account has been created');
+
+    if (signUpForm) {
+        signUpForm.parentNode.removeChild(signUpForm);
+    }
+    let toDoTemplate = document.getElementById("todo_list"); //adding new template
+    let clone = toDoTemplate.content.cloneNode(true);
+    document.body.appendChild(clone);
+    getTaskList();
 }
 
 
 function signIn_signUp() {
-    let signInForm = document.getElementById("sign_in_div");
-    signInForm.classList.add("hidden"); // Add 'hidden' class to hide
 
     let signInTemplate = document.getElementById("sign_in_div");
     if (signInTemplate) {
@@ -84,12 +81,11 @@ function signIn_signUp() {
     let toDoTemplate = document.getElementById("sign_up");
     let clone = toDoTemplate.content.cloneNode(true);
     document.body.appendChild(clone);
-
 }
 
 function getTaskList(){
     var fxhttp=new FXMLHttpRequest();
-    fxhttp.open("GET","./GET_user_list",true);
+    fxhttp.open("GET","./GET_user_list",false);
     user_task_list={
         type:"user",
         username:cur_user.username,
@@ -104,20 +100,19 @@ function getTaskList(){
             let li = document.createElement("li");
             let item_value = task_list[i].taskId+" "+task_list[i].text;
             let x = document.createTextNode(item_value);
-            //li.setAttribute('id',task_list[i].mail)
             li.setAttribute('class',"task_list")
             li.appendChild(x);
+            let space1 = document.createTextNode("     ");
+            li.appendChild(space1);
+                
             let updatetask = task_list[i];
       
-
             let inputField = document.createElement("input");
                 inputField.type = "text";
-                //inputField.value = task_list[i].text;
                 inputField.className = "task-input";
                 inputField.addEventListener("keypress", function(event) {
                     if (event.key === "Enter") {
                         event.preventDefault();
-                        //task_list[i].text = inputField.value;
                         var currentDate = new Date();
                         new_task={
                             type: "task",
@@ -126,16 +121,13 @@ function getTaskList(){
                             isDone:"false",
                             date: currentDate.toISOString()
                         };
-                        //let obj1String = JSON.stringify(updatetask);
-                        //let obj2String = JSON.stringify(new_task);
                         let combinedString = [updatetask, new_task];
-                        updateTask(updatetask,new_task);
+                        updateTask(combinedString);
                         
                         li.firstChild.nodeValue = inputField.value + " " + inputField.value;
                     }
                 });
                 li.appendChild(inputField);
-
 
             let closeButton = document.createElement("span");
             closeButton.innerHTML = "&times;";
@@ -175,30 +167,31 @@ function addTask(){
     let li = document.createElement("li");
     let item_value = title+" "+text;
     let x = document.createTextNode(item_value);
-    li.setAttribute('class',"task_list")
     li.appendChild(x);
+    let space1 = document.createTextNode("   ");
+    li.appendChild(space1);
     
     let inputField = document.createElement("input");
-                inputField.type = "text";
-                inputField.className = "task-input";
-                inputField.addEventListener("keypress", function(event) {
-                    if (event.key === "Enter") {
-                        event.preventDefault();
-                        var currentDate = new Date();
-                        new_task={
-                            type: "task",
-                            taskId: inputField.value, //title
-                            text:inputField.value,
-                            isDone:"false",
-                            date: currentDate.toISOString()
-                        };
-                        updateTask(updatetask,new_task);
-                        
-                        li.firstChild.nodeValue = inputField.value + " " + inputField.value;
-                    }
-                });
-                li.appendChild(inputField);
-    let closeButton = document.createElement("span");
+    inputField.type = "text";
+    inputField.className = "task-input";
+    inputField.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            var currentDate = new Date();
+            new_task2={
+            type: "task",
+            taskId: inputField.value, //title
+            text:inputField.value,
+            isDone:"false",
+            date: currentDate.toISOString()
+            };
+            let combinedString = [new_task, new_task2];
+            updateTask(combinedString);                      
+            li.firstChild.nodeValue = inputField.value + " " + inputField.value;
+            }});
+            li.appendChild(inputField);
+            
+            let closeButton = document.createElement("span");
             closeButton.innerHTML = "&times;";
             closeButton.className = "close-button";  
             closeButton.onclick = function() {
@@ -214,37 +207,26 @@ function addTask(){
 function removeTask(task){
     var fxhttp=new FXMLHttpRequest();
     fxhttp.open("DELETE","./remove_task",true);
-    var list_to_search_json=JSON.stringify(task); 
-    fxhttp.send(list_to_search_json);
+    var task_to_remove=JSON.stringify(task); 
+    fxhttp.send(task_to_remove);
 }
 
-function updateTask(updatetask, new_task){
-    //var fxhttp=new FXMLHttpRequest();
-    //fxhttp.open("PUT","./update_task",true);
-    //var list_to_search_json=JSON.stringify(task); 
-    //fxhttp.send(list_to_search_json);
-    removeTask(updatetask);
+function updateTask(task){
     var fxhttp=new FXMLHttpRequest();
-    fxhttp.open("POST","./add_task",true);
-    var list_to_search_json=JSON.stringify(new_task); 
-    fxhttp.send(list_to_search_json);
-
-    let li = document.createElement("li");
-    let item_value = new_task.title+" "+new_task.text;
-    let x = document.createTextNode(item_value);
-    li.setAttribute('class',"task_list")
-    li.appendChild(x);  
-    let closeButton = document.createElement("span");
-            closeButton.innerHTML = "&times;";
-            closeButton.className = "close-button";  
-            closeButton.onclick = function() {
-                li.remove();
-                removeTask(new_task);
-            };
-            li.appendChild(closeButton);
-            li.className = "task-list";     
-    document.getElementById("todoList").appendChild(li);
-
+    fxhttp.open("PUT","./update_task",true);
+    fxhttp.send(task);
 }
 
-
+function LogOut_func(){
+    cur_user=null; //for body parameter of send
+    var fxhttp=new FXMLHttpRequest();
+    fxhttp.open("POST","./user_logout",false);
+    var user_json=JSON.stringify(cur_user); 
+    fxhttp.send(user_json);
+    let toDoTemplate = document.getElementById("todo_list_div");
+    toDoTemplate.parentNode.removeChild(toDoTemplate);
+    alert("You have been logged out");
+    let sign_in_template = document.getElementById("sign_in_template");
+   let clone = sign_in_template.content.cloneNode(true);
+    document.body.appendChild(clone);
+}

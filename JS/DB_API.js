@@ -54,6 +54,10 @@ static getUser(username) {
 
     // Find the user with the matching username
     const user = users.find(u => u.username === username);
+    if(user){
+    localStorage.setItem("current_user", JSON.stringify(user)); //updates current user
+    }
+
 
     // Return the found user object, or null if not found
     return user || null;

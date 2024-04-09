@@ -5,6 +5,13 @@ class Server{
             case "POST":
             var data=JSON.parse(body)
             
+            if(obj.url=="./user_logout"){ //logout
+                DB_API.userLogout();
+                obj.status=200;
+                obj.readyState=4;
+                return obj;
+            }
+            
             if(data.type=="user"){  //adding a user
                 DB_API.addUser(data);
                 obj.status=200;

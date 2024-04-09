@@ -1,279 +1,78 @@
-.active_page{
-    display: block;
-}
 
-.page{
-   display: none;
-    width: 100%;
-    min-height: 100%; /* allow for content off the bottom of the page */
-    position: fixed;  /* or absolute if the user needs to scroll for more content */
-    padding: 1rem 2rem;
-}
 
-/* style home page*/
 body{
     background-color: rgb(247, 241, 230);
 }
-#home_div{
-    background-color: rgb(247, 241, 230);
+
+h1{
+  text-align: center; /* Align text to center */
+
 }
 
-#site_title{
-    font-family: 'Tangerine'; 
-    margin: auto;
-    font-size: 100px;
-    text-align: center;
-    align-content: center;
-    align-items: center;
-    margin-top: 5px;
-    font-weight: bold;
-    color: rgb(92,86,75);
-}
-.navbar { 
-    overflow: hidden; 
-    background-color: whitesmoke; 
-    margin-right: 10px;
-    margin-left: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    width: 85%;
-    /* margin: 10px;  */
-    border-radius: 25px; 
-    
-  } 
-   
-  /* Links inside the navbar */ 
-  .navbar a { 
-    float: left; 
-    font-size: 40px; 
-    font-weight: bold;
-    color: rgb(92,86,75); 
-    text-align: center; 
-    padding: auto; 
-    text-decoration: none; 
-    font-family: 'Tangerine', sans-serif;
-  } 
-   
-  .navbarul { 
-    list-style-type: none; 
-    margin: 15; 
-    padding: 0; 
-    overflow: hidden; 
-  } 
-   
-  .navbarul li { 
-    float: left; 
-    padding-left: 10px; 
-    padding-right: 10px; 
-  } 
-   
-  .navbarul li a { 
-    display: block; 
-    text-align: center; 
-    padding-right:  16px; 
-    padding-left: 16px; 
-    text-decoration: none; 
-  } 
-
-  .slowFade {
-    display: flex;
-    align-items: flex-start;
-    /* background: #fff; */
-    height: 90vh;
-   
-    position: relative;
-  }
-  .slowFade .slide img {
-    position: absolute;
-    min-width: 100%;
-    max-height: 100%;
-    width: 100%;
-    height: auto;
-    background: #000;
-    opacity: 0;
-    animation: slowFade 24s infinite;
-    justify-content: center;
-  }
-  .slowFade .slide:nth-child(2) img {
-            animation-delay: 8s;
-  }
-  .slowFade .slide:nth-child(3) img {
-    
-            animation-delay: 16s;
-  }
-  /* .slowFade .slide:nth-child(4) img {
-    animation-delay: 24s;
-        
-  }
-  .slowFade .slide:nth-child(5) img {
-    animation-delay: 32s;
-        
-  }
-  
-  .slowFade .slide:nth-child(6) img {
-    animation-delay: 40s;
-        
-  } */
-  @keyframes slowFade {
-    25% {
-        opacity: 1;
-        
-    }
-    40% {
-        opacity: 0;
-    }
-  }
-
-  /* style sign in page*/
   .sign_in{
     height: 100vh;
     width: 100%;
-    background: url("./images/wedding.jpg") no-repeat center center;
+    background-color: aquamarine;
     background-size: cover;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     color: black;
-    font-family: 'Tangerine';
+    font-family: 'Comic Sans';
     font-size: 50px;
   }
 
-  .title_label{
-    font-weight: bold;
-  }
 
-  .button {
-    border:#000; 
-    border-radius: 50px; /* Adjust as needed */
-    color: black;
-    font-size: 40px;
-    font-family: 'Tangerine';
-    cursor: pointer; /* Add cursor pointer to indicate interactivity */
+.input-sign_in, #todoInput,.task-input{
+  width: 300px;
+  padding: 15px;
+  border: 2px solid #ccc;
+  border-radius: 25px;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  color: #333;
+  background-color: #f5f5f5;
+  transition: border-color 0.3s ease;
 }
 
-  .menu_sign_in{
-    text-align: left;
-    font-size: 10px;
-   
-  }
-
+.input-sign_in:focus, #todoInput:focus,.task-input:focus {
+  outline: none;
+  border-color: #007bff; /* Change border color when input is focused */
+  box-shadow: 0 0 5px #007bff; /* Add a subtle shadow when input is focused */
+}
   /* style sign up page*/
   
   .sign_up{
     height: 100vh;
     width: 100%;
-    background: url("./images/sign_up.jpg") no-repeat center center;
+    background-color: aquamarine;
     background-size: cover;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     color: black;
-    font-family: 'Tangerine';
+    font-family: 'Comic Sans';
     font-size: 40px;
   }
-
-  /* style contact us*/
-  .contact{
-    height: 100vh;
-    width: 100%;
-    background: url("./images/contact.jpg") no-repeat center center;
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: black;
-    font-family: 'Tangerine';
-    font-size: 50px;
-  }
-
-  
- 
-  
-  #log_out_icone{
-    width: 25px;
-    height: 25px;
-    margin-top: 5px;
-    display: inline-block;
-  
-  }
-   
-  #hello_user{
-    display: inline;
     
-    }
-  #close_span{
-    float: right;
-    margin-right: 10px;
-    margin-top: 10px;
-    width: 25px;
-    height: 25px;
-  }
-
-
-
-  .appear{
-    display: block;
-  }
-  .remove{
-    display: none;
-  }
-  #guest_event_list{
-    width: 60%;
-    float: left;
-    display: inline-block;
-  }
-  #username_div{
-    float: right;
-    margin-right: 20px;
-    display:inline-block;
-    font-weight: bold;
-  
-  }
-
-  /* Style the list items */
-
-
-
-  .close {
-    position: absolute;
-    right: 0;
-    top: 0;
-    padding: 12px 16px 12px 16px;
-  }
-
-
-
-
-/*About us*/
-.text_about{
-  font-family: 'Tangerine'; 
-    margin: auto;
-    font-size: 50px;
-    text-align: center;
-    align-content: center;
-}
-#about_us_title{
-  font-family: 'Tangerine'; 
-  font-size: 100px;
-  text-align: center;
-}
-  
+  /* Style the to do list */
 
 .close-button {
   position: absolute;
   right: 0;
   top: 0;
-  padding: 12px 16px 12px 16px;
+  padding: 28px 22px;
 }
 
 .close-button:hover {
   background-color: #f44336;
   color: white;
 }
-
+ul{
+  list-style: none;
+}
 ul li {
   cursor: pointer;
   position: relative;
@@ -281,6 +80,7 @@ ul li {
   background: #eee;
   font-size: 18px;
   transition: 0.2s;
+  width: 700px; 
 
   /* make the list items unselectable */
   -webkit-user-select: none;
@@ -299,12 +99,7 @@ ul li:hover {
   background: #ddd;
 }
 
-/* When clicked on, add a background color and strike out text */
-ul li.checked {
-  background: #888;
-  color: #fff;
-  text-decoration: line-through;
-}
+
 .edit_btn{
   position: absolute;
   right: 20;
@@ -312,3 +107,39 @@ ul li.checked {
   padding: 12px 16px 12px 16px;
 
 }
+
+
+button {
+  display: inline-block;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  background-color: #007bff;
+  border: 2px solid #007bff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+/* Hover state */
+button:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+/* Focus state */
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #007bff; /* Adds a subtle focus ring */
+}
+
+h2, #todoInput, #logout_btn{
+  margin-left: 40px;
+}
+.hidden {
+  display: none; /* or visibility: hidden; */
+}
+
