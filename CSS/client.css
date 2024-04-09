@@ -24,7 +24,7 @@ h1{
   }
 
 
-.input-sign_in, #todoInput,.task-input{
+.input-sign_in, #todoInput,.task-input, #searchInput{
   width: 300px;
   padding: 15px;
   border: 2px solid #ccc;
@@ -36,7 +36,7 @@ h1{
   transition: border-color 0.3s ease;
 }
 
-.input-sign_in:focus, #todoInput:focus,.task-input:focus {
+.input-sign_in:focus, #todoInput:focus,.task-input:focus, #searchInput:focus {
   outline: none;
   border-color: #007bff; /* Change border color when input is focused */
   box-shadow: 0 0 5px #007bff; /* Add a subtle shadow when input is focused */

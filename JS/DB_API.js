@@ -28,6 +28,7 @@ class DB_API{
     users.push(user);
     // Store the updated user data back to local storage
     localStorage.setItem('users', JSON.stringify(users));
+    localStorage.setItem("current_user", JSON.stringify(user))
     }
     else{
         console.log("user already exist");
@@ -44,7 +45,6 @@ class DB_API{
         localStorage.setItem("current_user", JSON.stringify(current_user));
     }*/
     
-    localStorage.setItem("current_user", JSON.stringify(user))
 }
 
 // Function to retrieve a user object from local storage by username

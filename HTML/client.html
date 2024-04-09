@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/CSS/client.css"/>
+    <link rel="stylesheet" type="text/css" href="../CSS/client.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet'>
@@ -70,6 +70,8 @@
     <template id="todo_list">
         <div id="todo_list_div"> 
         <button id="logout_btn" onclick="LogOut_func()">Logout</button>
+        <span style="margin-right: 10px;"></span>
+        <input type="text" id="searchInput" placeholder="search..." oninput="handleInput()">
 
           <div class="todo-container">
             <h2>My To-Do List</h2>

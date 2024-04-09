@@ -48,6 +48,7 @@ function signUp_toDo() {
 
     let emailInput = signUpForm.querySelector("#email").value;
     let userPassword = signUpForm.querySelector("#pw").value;
+    sign_up_input();
     let new_user={
         type:"user",
         username:emailInput,
@@ -92,8 +93,8 @@ function getTaskList(){
         password: cur_user.password,
         userTasks:cur_user.userTasks
     }
-    var list_to_search_json=JSON.stringify(user_task_list); 
-    fxhttp.send(list_to_search_json);
+    var user_list=JSON.stringify(user_task_list); 
+    fxhttp.send(user_list);
     let task_list=fxhttp.onload();
     if(task_list!=null){
         for(i=0;i<task_list.length;i++){
@@ -230,3 +231,59 @@ function LogOut_func(){
    let clone = sign_in_template.content.cloneNode(true);
     document.body.appendChild(clone);
 }
+
+function handleInput(){
+document.getElementById("searchInput").addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault(); // Prevent the default form submission behavior
+        
+        var inputValue = event.target.value.trim(); // Get the input value and remove leading/trailing whitespace
+        var todoListItems = document.querySelectorAll("#todoList li"); // Get all <li> elements inside the todoList
+        
+        todoListItems.forEach(function(item) {
+            var liText = item.textContent.trim().toLowerCase(); // Get the text content of the <li> element and convert to lowercase
+            if (inputValue === "") {
+                item.style.display = "block"; // Show the <li> element if input value is empty
+            } else if (liText.includes(inputValue)) {
+                item.style.display = "block"; // Show the <li> element if its text matches the input value
+            } else {
+                item.style.display = "none"; // Hide the <li> element otherwise
+            }
+        });
+        
+        // Clear the input field
+        event.target.value = "";
+    }
+});
+}
+
+function sign_in_input(){
+      
+}
+
+function sign_up_input(){
+    let signUpForm = document.getElementById("sign_up_div");
+    let emailInput = signUpForm.querySelector("#email").value;
+    let userPassword = signUpForm.querySelector("#pw").value;
+ //var email=document.getElementById('email');
+        //var pw = document.getElementById('pw');
+      
+        var lowerCaseLetters = /[a-z]/g;
+        var upperCaseLetters = /[A-Z]/g;
+        var numbers = /[0-9]/g;
+    
+        if(userPassword.length == 0){
+            alert('Please fill in password');
+        
+        }else if(!userPassword.match(numbers)){
+            alert('please add 1 number');
+    
+        }else if(!userPassword.match(upperCaseLetters)){
+            alert('please add 1 uppercase letter');
+    
+        }else if(!userPassword.match(lowerCaseLetters)){
+            alert('please add 1 loeercase letter');
+        }   
+}
+
+
