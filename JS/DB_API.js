@@ -55,7 +55,7 @@ static getUser(user1) {
     const users = JSON.parse(localStorage.getItem('users')) || [];
 
     // Find the user with the matching username
-    const user = users.find(u => u.username === user1.username, u => u.password === user1.password);
+    const user = users.find(u => u.username === user1.username && u.password === user1.password);
     if(user){
     localStorage.setItem("current_user", JSON.stringify(user)); //updates current user
     }
