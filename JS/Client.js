@@ -43,12 +43,14 @@ function signIn_toDo() {
 
 }
 
-function signUp_toDo() {
+ function signUp_toDo() {
     let signUpForm = document.getElementById("sign_up_div");
 
     let emailInput = signUpForm.querySelector("#email").value;
     let userPassword = signUpForm.querySelector("#pw").value;
-    sign_up_input();
+
+
+    
     let new_user={
         type:"user",
         username:emailInput,
@@ -232,8 +234,7 @@ function LogOut_func(){
     document.body.appendChild(clone);
 }
 
-function handleInput(){
-document.getElementById("searchInput").addEventListener("keypress", function(event) {
+function handleKeyPress(event) {
     if (event.key === "Enter") {
         event.preventDefault(); // Prevent the default form submission behavior
         
@@ -254,7 +255,6 @@ document.getElementById("searchInput").addEventListener("keypress", function(eve
         // Clear the input field
         event.target.value = "";
     }
-});
 }
 
 function sign_in_input(){
@@ -262,6 +262,8 @@ function sign_in_input(){
 }
 
 function sign_up_input(){
+    notGoodInput = true;
+    while(notGoodInput){
     let signUpForm = document.getElementById("sign_up_div");
     let emailInput = signUpForm.querySelector("#email").value;
     let userPassword = signUpForm.querySelector("#pw").value;
@@ -273,17 +275,34 @@ function sign_up_input(){
         var numbers = /[0-9]/g;
     
         if(userPassword.length == 0){
+            signUpForm.querySelector("#email").value="";
+            signUpForm.querySelector("#pw").value="";
             alert('Please fill in password');
-        
+            notGoodInput=false;
         }else if(!userPassword.match(numbers)){
+            signUpForm.querySelector("#email").value="";
+            signUpForm.querySelector("#pw").value="";
             alert('please add 1 number');
-    
+            notGoodInput=false;
+
         }else if(!userPassword.match(upperCaseLetters)){
-            alert('please add 1 uppercase letter');
-    
+            signUpForm.querySelector("#email").value="";
+            signUpForm.querySelector("#pw").value="";
+            alert('please add 1 uppercase letter');   
+            notGoodInput=false;
+
         }else if(!userPassword.match(lowerCaseLetters)){
+            signUpForm.querySelector("#email").value="";
+            signUpForm.querySelector("#pw").value="";
             alert('please add 1 loeercase letter');
-        }   
+            notGoodInput=false;
+
+        } 
+        else {
+            notGoodInput = false; // Set notGoodInput to false to exit the loop when input is considered valid
+        }
+
+    }
 }
 
 

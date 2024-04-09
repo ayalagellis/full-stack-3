@@ -31,7 +31,7 @@ class Server{
             if(obj.url=="./GET_user"){  //returning a user
                 var user=null;
                 var data=JSON.parse(body)
-                user=DB_API.getUser(data.username);
+                user=DB_API.getUser(data);
                 if(user!=null){
                     obj.status=200;
                     obj.readyState=4;

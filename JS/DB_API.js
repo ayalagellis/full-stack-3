@@ -48,12 +48,12 @@ class DB_API{
 }
 
 // Function to retrieve a user object from local storage by username
-static getUser(username) {
+static getUser(user1) {
     // Retrieve user data from local storage
     const users = JSON.parse(localStorage.getItem('users')) || [];
 
     // Find the user with the matching username
-    const user = users.find(u => u.username === username);
+    const user = users.find(u => u.username === user1.username, u => u.password === user1.password);
     if(user){
     localStorage.setItem("current_user", JSON.stringify(user)); //updates current user
     }

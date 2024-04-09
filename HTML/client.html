@@ -61,7 +61,7 @@
                          </div>
     
                         <div class="group">
-                            <button  type="submit" onclick="signUp_toDo()">Sign Up</button>
+                            <button  type="submit" onclick="sign_up_input(); signUp_toDo()">Sign Up</button>
                         <br>         
                 </form>
          </div>
@@ -71,7 +71,7 @@
         <div id="todo_list_div"> 
         <button id="logout_btn" onclick="LogOut_func()">Logout</button>
         <span style="margin-right: 10px;"></span>
-        <input type="text" id="searchInput" placeholder="search..." oninput="handleInput()">
+        <input type="text" id="searchInput" placeholder="search..." onkeypress="handleKeyPress(event)">
 
           <div class="todo-container">
             <h2>My To-Do List</h2>
