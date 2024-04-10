@@ -140,7 +140,7 @@ function getTaskList(){
                 li.appendChild(inputField);
 
             let closeButton = document.createElement("span");
-            closeButton.innerHTML = "&times;";
+            closeButton.innerHTML = "<span style='font-size: 30px; font-weight: bold; color: black;'>&times;</span>";
             closeButton.className = "close-button";  
             let removedTask =  task_list[i];                           
             closeButton.onclick = function() {
@@ -269,13 +269,9 @@ function sign_in_input(){
 }
 
 function sign_up_input(){
-    notGoodInput = true;
-    while(notGoodInput){
     let signUpForm = document.getElementById("sign_up_div");
     let emailInput = signUpForm.querySelector("#email").value;
     let userPassword = signUpForm.querySelector("#pw").value;
- //var email=document.getElementById('email');
-        //var pw = document.getElementById('pw');
       
         var lowerCaseLetters = /[a-z]/g;
         var upperCaseLetters = /[A-Z]/g;
@@ -284,32 +280,29 @@ function sign_up_input(){
         if(userPassword.length == 0){
             signUpForm.querySelector("#email").value="";
             signUpForm.querySelector("#pw").value="";
+            signUpForm.querySelector("#repeat_pw").value="";
             alert('Please fill in password');
-            notGoodInput=false;
         }else if(!userPassword.match(numbers)){
             signUpForm.querySelector("#email").value="";
             signUpForm.querySelector("#pw").value="";
+            signUpForm.querySelector("#repeat_pw").value="";
             alert('please add 1 number');
-            notGoodInput=false;
 
         }else if(!userPassword.match(upperCaseLetters)){
             signUpForm.querySelector("#email").value="";
             signUpForm.querySelector("#pw").value="";
+            signUpForm.querySelector("#repeat_pw").value="";
             alert('please add 1 uppercase letter');   
-            notGoodInput=false;
 
         }else if(!userPassword.match(lowerCaseLetters)){
             signUpForm.querySelector("#email").value="";
             signUpForm.querySelector("#pw").value="";
-            alert('please add 1 loeercase letter');
-            notGoodInput=false;
-
+            signUpForm.querySelector("#repeat_pw").value="";
+            alert('please add 1 lowercase letter');
         } 
         else {
-            notGoodInput = false; // Set notGoodInput to false to exit the loop when input is considered valid
+            signUp_toDo()       
         }
-
-    }
 }
 
 

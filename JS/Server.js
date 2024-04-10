@@ -1,5 +1,5 @@
 class Server{
-    static carry_request(body, obj){
+    static transfer_request(body, obj){
 
         switch(obj.method){
             case "POST":
